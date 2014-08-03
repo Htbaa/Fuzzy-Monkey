@@ -32,7 +32,7 @@ Class FuzzyParser
 			ss             = "SINGLETON_SET" min peak max
 			settype        = lss | ts | rss | ss
 			set            = "SET" setname settype
-			rule           = "RULE" ruleset IS desirability
+			rule           = "RULE" ruleset IS setname
 			ruleset        = setname | setname operator setname
 			operator       = AND | OR
 			desirability   = Undesirable | Desirable | VeryDesirable
