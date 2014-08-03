@@ -120,6 +120,7 @@ Class FuzzyParser
 					sets.Add(setname, set)
 				Case "RULE"
 					Local result:FzSet = sets.Get(parts[parts.Length - 1])
+					If result = Null Then Throw New FuzzyParserException("Result term " + parts[parts.Length - 1] + " not found in set!")
 					'RULE foobar IS desirability
 					'setname
 					If parts.Length = 4
@@ -129,6 +130,8 @@ Class FuzzyParser
 						Local operator:String = parts[2]
 						Local term1:FzSet = sets.Get(parts[1])
 						Local term2:FzSet = sets.Get(parts[3])
+						If term1 = Null Then Throw New FuzzyParserException("Term " + parts[1] + " not found in set!")
+						If term2 = Null Then Throw New FuzzyParserException("Term " + parts[3] + " not found in set!")
 						Select operator
 							Case "AND"
 								fm.AddRule(New FzAND(term1, term2), result)
